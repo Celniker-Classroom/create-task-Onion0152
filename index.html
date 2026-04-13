@@ -2,12 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Burger customizer</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Your html goes here...</h1>
-    <br>See the <a href="README.md">README</a> for project details
+    <header>
+        <h1>Customize Your Burger!</h1>
+    </header>
+    <main>
+        <section id="bun-selection">
+            <h2>Select Your Bun</h2>
+            <label><input type="radio" name="bun" value="sesame"> Sesame Seed Bun ($1.00)</label>
+            <label><input type="radio" name="bun" value="whole-wheat"> Whole Wheat Bun ($1.25)</label>
+            <label><input type="radio" name="bun" value="lettuce"> Lettuce Wrap ($0.75)</label>
+        </section>
+        <section id="patty-selection">
+            <h2>Patty type</h2>
+            <div>
+                <label>Type:</label>
+                <select name="patty-type">
+                    <option value="beef">Beef ($5.50)</option>
+                    <option value="chicken">Chicken ($4.75)</option>
+                    <option value="veggie">Veggie ($4.25)</option>
+                    <option value="turkey">Turkey ($4.95)</option>
+                </select>
+            </div>
+            <div>
+                <label>Well-Done:</label>
+                <select name="well-done">
+                    <option value="rare">Rare ($0.50 extra)</option>
+                    <option value="medium-rare">Medium Rare</option>
+                    <option value="medium">Medium</option>
+                    <option value="well-done">Well Done</option>
+                </select>
+            </div>
+            <div>
+                <label>Amount:</label>
+                <label><input type="radio" name="amount" value="single"> Single</label>
+                <label><input type="radio" name="amount" value="double"> Double (+$3.00)</label>
+            </div>
+        </section>
+        <section id="toppings-selection">
+            <h2>Select Toppings</h2>
+            <label><input type="checkbox" name="toppings" value="lettuce"> Lettuce ($0.50)</label>
+            <label><input type="checkbox" name="toppings" value="tomato"> Tomato ($0.50)</label>
+            <label><input type="checkbox" name="toppings" value="onion"> Onion ($0.50)</label>
+            <label><input type="checkbox" name="toppings" value="pickles"> Pickles ($0.50)</label>
+            <label><input type="checkbox" name="toppings" value="cheese"> Cheese ($0.75)</label>
+            <label><input type="checkbox" name="toppings" value="bacon"> Bacon ($1.50)</label>
+        </section>
+        <section id="sauces-selection">
+            <h2>Select Sauces</h2>
+            <label><input type="checkbox" name="sauces" value="ketchup"> Ketchup ($0.25)</label>
+            <label><input type="checkbox" name="sauces" value="mustard"> Mustard ($0.25)</label>
+            <label><input type="checkbox" name="sauces" value="mayo"> Mayo ($0.25)</label>
+            <label><input type="checkbox" name="sauces" value="bbq"> BBQ Sauce ($0.50)</label>
+            <label><input type="checkbox" name="sauces" value="ranch"> Ranch ($0.50)</label>
+        </section>
+        <section id="summary">
+            <h2>Your Burger Summary</h2>
+            <p>Total Cost: $<span id="total-cost">0.00</span></p>
+            <p>Total Calories: <span id="total-calories">0</span></p>
+            <button id="calculate">Calculate</button>
+        </section>
+    </main>
 </body>
 </html>
