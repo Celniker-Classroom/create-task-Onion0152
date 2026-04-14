@@ -46,7 +46,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     const amount = document.querySelector('input[name="amount"]:checked');
     if (amount && amount.value === 'double') {
         cost += 3.00;
-        calories += 200; // assuming double patty calories
+        calories += 300; // assuming double patty calories
     }
 
     // toppings
@@ -57,7 +57,7 @@ document.getElementById('calculate').addEventListener('click', function() {
             calories += 100;
         } else if (topping.value === 'bacon') {
             cost += 1.50;
-            calories += 90;
+            calories += 129;
         } else {
             cost += 0.50;
             calories += 10;
