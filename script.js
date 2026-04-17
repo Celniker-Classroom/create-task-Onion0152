@@ -29,8 +29,8 @@
 
         // 2. REQUIREMENT: Parameter w/ procedure
         let toppingStats = calculateToppings(selectedToppings);
-        cost += toppingStats.addedCost;
-        calories += toppingStats.addedCalories;
+        cost += toppingStats.toppingCost;
+        calories += toppingStats.toppingCalories;
 
         const sauces = document.querySelectorAll('input[name="sauces"]:checked');
         sauces.forEach(sauce => {
@@ -44,23 +44,23 @@
 
     // 3. REQUIREMENT: Parameter, Iteration, Selection
     function calculateToppings(list) {
-        let addedCost = 0;
-        let addedCalories = 0;
+        let extraCost = 0;
+        let extraCalories = 0;
 
         // Iteration
         for (let i = 0; i < list.length; i++) {
             // Selection
             if (list[i] === 'cheese') {
-                addedCost += 0.75;
-                addedCalories += 100;
+                extraCost += 0.75;
+                extraCalories += 100;
             } else if (list[i] === 'bacon') {
-                addedCost += 1.50;
-                addedCalories += 129;
+                extraCost += 1.50;
+                extraCalories += 129;
             } else {
-                addedCost += 0.50;
-                addedCalories += 10;
+                extraCost += 0.50;
+                extraCalories += 10;
             }
         }
 
-        return { addedCost: addedCost, addedCalories: addedCalories };
+        return { toppingCost: extraCost, toppingCalories: extraCalories };
     }
