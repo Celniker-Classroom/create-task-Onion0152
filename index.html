@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>-Benny's Grillhouse-</h1>
+        <h1>-The Grillhouse-</h1>
         <h2>Customize Your Burger!</h2>
     </header>
     <main>
@@ -32,7 +32,7 @@
             <div>
                 <label>Well-Done:</label>
                 <select name="well-done">
-                    <option value="rare">Rare ($0.50 extra)</option>
+                    <option value="rare">Rare</option>
                     <option value="medium-rare">Medium Rare</option>
                     <option value="medium">Medium</option>
                     <option value="well-done">Well Done</option>
@@ -63,9 +63,15 @@
         </section>
         <section id="summary">
             <h2>Your Burger Summary</h2>
+            <div>
+                <label for="customer-name">Enter Your Name:</label>
+                <input type="text" id="customer-name" placeholder="Your name">
+            </div>
             <p>Total Cost: $<span id="total-cost">0.00</span></p>
             <p>Total Calories: <span id="total-calories">0</span></p>
+            <p>Estimated Time: <span id="total-time">0</span> minutes</p>
             <button id="calculate">Calculate</button>
+            <p id="order-ready" style="display: none;"></p>
         </section>
     </main>
 </body>
