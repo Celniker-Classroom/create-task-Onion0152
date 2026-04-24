@@ -1,6 +1,6 @@
 /* Keep your existing font */
 body {
-    font-family: 'Playfair Display', serif;
+    font-family: playfair display, serif;
     margin: 0;
     padding: 20px;
     background-image: url('image/sergey-kotenev-M8COBu-_Va8-unsplash.jpg');
@@ -93,16 +93,45 @@ section {
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
-    background-color: rgba(176, 176, 176, 0.961);
+    background-color: rgba(65, 42, 23, 0.961);
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: rgb(203, 206, 202);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: rgb(49, 143, 41);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+
+section h2:hover::after {
+    transform: scaleX(1);
+}
+
+section label {
+    color: white;
+}
+
+section select {
+    color: #333;
 }
 
 h2 {
     text-align: center;
-    border-bottom: 2px solid #4CAF50;
-    display: inline-block;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
 }
 
 /* Button Group Styling */
