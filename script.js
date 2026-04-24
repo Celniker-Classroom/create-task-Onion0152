@@ -1,63 +1,4 @@
 
-    document.getElementById('calculate').addEventListener('click', function () {
-        let cost = 0;
-        let calories = 0;
-        let time = 0;
-
-        const bun = document.querySelector('input[name="bun"]:checked');
-        const pattyType = document.querySelector('select[name="patty-type"]').value;
-        const wellDone = document.querySelector('select[name="well-done"]').value;
-        const amount = document.querySelector('input[name="amount"]:checked');
-
-        //list
-        let selectedToppings = [];
-        const toppingCheckboxes = document.querySelectorAll('input[name="toppings"]:checked');
-        toppingCheckboxes.forEach(checkbox => {
-            selectedToppings.push(checkbox.value);
-        });
-
-        let selectedSauces = [];
-        const sauces = document.querySelectorAll('input[name="sauces"]:checked');
-        sauces.forEach(checkbox => {
-            selectedSauces.push(checkbox.value);
-        });
-        //function calls
-        let bunstats = calculateBun(bun);
-        cost += bunstats.cost;
-        calories += bunstats.calories;
-        time += bunstats.time;
-
-        let pattyStats = calculatePatty(pattyType, amount, wellDone);
-        cost += pattyStats.cost;
-        calories += pattyStats.calories;
-        time += pattyStats.time;
-
-        let toppingStats = calculateToppings(selectedToppings);
-        cost += toppingStats.cost;
-        calories += toppingStats.calories;
-        time += toppingStats.time;
-
-        let sauceStats = calculatesauces(selectedSauces);
-        cost += sauceStats.cost;
-        calories += sauceStats.calories;
-        time += sauceStats.time;
-
-        document.getElementById('total-cost').textContent = cost.toFixed(2);
-        document.getElementById('total-calories').textContent = calories;
-        document.getElementById('total-time').textContent = time;
-
-        const name = document.getElementById('customer-name').value.trim();
-        const orderReady = document.getElementById('order-ready');
-        if (name) {
-            orderReady.textContent = `${name}, your order will be ready in ${time} minutes.`;
-            orderReady.style.display = 'block';
-        } else {
-            orderReady.style.display = 'none';
-        }
-    });
-
-
-
     function calculateBun(bun) {
         let bunCost = 0;
         let bunCalories = 0;
@@ -129,3 +70,83 @@
 
         return { cost: extraCost, calories: extraCalories, time: extraTime };
     }
+let totalTimeEstimated = 0;
+
+
+document.getElementById('calculate').addEventListener('click', function () {
+    let cost = 0;
+    let calories = 0;
+    let time = 0;
+
+    const bun = document.querySelector('input[name="bun"]:checked');
+    const pattyType = document.querySelector('select[name="patty-type"]').value;
+    const wellDone = document.querySelector('select[name="well-done"]').value;
+    const amount = document.querySelector('input[name="amount"]:checked');
+
+    let selectedToppings = [];
+    const toppingCheckboxes = document.querySelectorAll('input[name="toppings"]:checked');
+    toppingCheckboxes.forEach(checkbox => {
+        selectedToppings.push(checkbox.value);
+    });
+
+    let selectedSauces = [];
+    const sauces = document.querySelectorAll('input[name="sauces"]:checked');
+    sauces.forEach(checkbox => {
+        selectedSauces.push(checkbox.value);
+    });
+
+    
+    let bunStats = calculateBun(bun);
+    cost += bunStats.cost;
+    calories += bunStats.calories;
+    time += bunStats.time;
+
+    let pattyStats = calculatePatty(pattyType, amount, wellDone);
+    cost += pattyStats.cost;
+    calories += pattyStats.calories;
+    time += pattyStats.time;
+
+    let toppingStats = calculateToppings(selectedToppings);
+    cost += toppingStats.cost;
+    calories += toppingStats.calories;
+    time += toppingStats.time;
+
+    let sauceStats = calculatesauces(selectedSauces);
+    cost += sauceStats.cost;
+    calories += sauceStats.calories;
+    time += sauceStats.time;
+
+
+    document.getElementById('total-cost').textContent = cost.toFixed(2);
+    document.getElementById('total-calories').textContent = calories;
+    document.getElementById('total-time').textContent = time;
+
+
+    totalTimeEstimated = time;
+
+    
+    document.getElementById('complete-order').style.display = 'inline-block';
+});
+
+document.getElementById('complete-order').addEventListener('click', function() {
+    const name = document.getElementById('customer-name').value.trim();
+    const modalMessage = document.getElementById('modal-message');
+    const modal = document.getElementById('modal-overlay');
+
+    if (name) {
+        modalMessage.textContent = `${name}, your burger will be ready in ${totalTimeEstimated} minutes.`;
+    } else {
+        modalMessage.textContent = `Your order will be ready in ${totalTimeEstimated} minutes.`;
+    }
+
+    modal.style.display = 'flex';
+});
+
+document.getElementById('reset-btn').addEventListener('click', function() {
+    
+    location.reload(); 
+});
+
+function closeModal() {
+    document.getElementById('modal-overlay').style.display = 'none';
+}
