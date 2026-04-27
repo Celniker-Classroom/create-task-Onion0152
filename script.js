@@ -8,10 +8,12 @@
             if (bun.value === 'sesame') { bunCost += 1.00; bunCalories += 100; bunTime += 1; }
             else if (bun.value === 'whole-wheat') { bunCost += 1.25; bunCalories += 120; bunTime += 1; }
             else if (bun.value === 'lettuce') { bunCost += 0.75; bunCalories += 10; bunTime += 1; }
+            //this way the function doesn't break if no bun. 
+            else if (bun.value === null) { bunCost += 0; bunCalories += 0; bunTime += 0; }
         }
         return { cost: bunCost, calories: bunCalories, time: bunTime };
     }
-
+//calculating patty cost, calories, and time based on type, amount, and cooking doneness. If no patty, return 0
     function calculatePatty(pattyType, amount, wellDone) {
             let pattyCost = 0;
             let pattyCalories = 0;
@@ -72,7 +74,7 @@
     }
 let totalTimeEstimated = 0;
 
-
+//event listener for calculate button, get selected options, call calculate functions, establish lists!
 document.getElementById('calculate').addEventListener('click', function () {
     let cost = 0;
     let calories = 0;
@@ -94,7 +96,7 @@ document.getElementById('calculate').addEventListener('click', function () {
     sauces.forEach(checkbox => {
         selectedSauces.push(checkbox.value);
     });
-
+//math logic to calculate cost, calories, and time to cook
     
     let bunStats = calculateBun(bun);
     cost += bunStats.cost;
@@ -116,7 +118,7 @@ document.getElementById('calculate').addEventListener('click', function () {
     calories += sauceStats.calories;
     time += sauceStats.time;
 
-
+//rounding cost to two dec places, reassigning text content and show complete order button
     document.getElementById('total-cost').textContent = cost.toFixed(2);
     document.getElementById('total-calories').textContent = calories;
     document.getElementById('total-time').textContent = time;
@@ -127,7 +129,7 @@ document.getElementById('calculate').addEventListener('click', function () {
     
     document.getElementById('complete-order').style.display = 'inline-block';
 });
-
+/*open modal on click, message with name and estimated time of completion. If no name, just show estimated time.*/  
 document.getElementById('complete-order').addEventListener('click', function() {
     const name = document.getElementById('customer-name').value.trim();
     const modalMessage = document.getElementById('modal-message');
